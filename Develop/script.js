@@ -1,108 +1,78 @@
-// Assignment Code
-const generate = document.getElementById("generate");
+//DOM Elements
+const passwordEl = document.getElementById('password');
+const lengthEl = document.getElementById('length');
+const CapLettersEl = document.getElementById('CapLetters');
+const LowLettersEl = document.getElementById('LowLetters');
+const NumbersEl = document.getElementById('Numbers');
+const SpecialCharEl = document.getElementById('SpecialChar');
+const GeneratesEl = document.getElementById('Generates');
 var generateBtn = document.querySelector("#generate");
-const resultEl = document.getElementById("result");
-const lengthEl = document.getElementById("length");
-const capitalEl = document.getElementById("capital");
-const lowerEl = document.getElementById("lower");
-const numbersEl = document.getElementById("numbers");
-const specialEl = document.getElementById("special");
-const passwordEl = document.getElementById("password");
-
-const writePasswordEl = document.getElementById("writePassword");
-const GenpasswordEl = document.getElementById("Genpassword");
 
 const randomFunc = {
   capital: getRandomcapital,
   lower: getRandomlower,
-  numbers: getRandomcapital,
-  special: getRandomspecial
-};
+  number: getRandomnumber,
+  special: getRandomspecials
+}
 
-// Write password to the password input
-// function writePassword() {
-//   password = generatePassword()
-//   passwordText = document.querySelector("#password")
-//   passwordText.value = password
-// }
+//generate active listener
+generateBtn.addEventListener('click', function (writePassword) {
+  const length = +lengthEl.value;
+  const hasCapital = CapLettersEl.checked;
+  const hasLower = LowLettersEl.checked;
+  const hasNumber = NumbersEl.checked;
+  const hasSpecial = SpecialCharEl.checked;
 
-// writePassword();
-generateBtn.addEventListener("click", writePassword);
-// generate event
-generate.addEventListener("click", () => {
-  const length = +lengthEl.value
-  const hascapital = capitalEl.checked
-  const haslower = lowerEl.checked
-  const hasnumbers = numbersEl.checked
-  const hasspecial = specialEl.checked
-
-  password.innterText= generatePassword(hascapital, haslower, hasnumbers, hasspecial,length);
+  passwordEl.innerText = generatePassword(hasCapital, hasLower, hasNumber, hasSpecial, length
+    );
+  
 });
 
-// generate password function
-function generatePassword (capital, lower, numbers, special, length) {
-  // initalize password vairable
-  // filter out unchecked types
-  // loop over length call generator function for each type
-  // add the final password to the password variable
-  let Genpassword = "";
-  const typesCount = capital + lower + numbers + special;
-  const typesArr = [{capital}, {lower}, {numbers}, {special}].filter(item => Object.values(item)[0]);
+//generates password
+function generatePassword(capital, lower, number, special, length) {
+  let generatedPassword = '';
+      const typesCount = capital + lower + number + special;
+// console.log('typesCount: '), typesCount;
 
-    if(typesCount === 0){
-      return '';
-    }
+
+      const typesArr = [{capital}, {lower}, {number}, {special}].filter(item => Object.values(item)[0]
+      );
+// console.log('typesArr: ', typesArr);
+
+      if(typesCount === 0) {
+        return'';
+      }
+
+
+      for(let i = 0; i < length; i += typesCount) {
+          typesArr.forEach(type => {
+              const funcName = Object.keys(type)[0];
+// console.log('funcName: ', funcName);
+              generatedPassword += randomFunc[funcName]();
+             
+           });
+      }
+      return generatedPassword;
   }
 
 
-// loop
 
-for (let i=0; i<length; i +=typesCount){
-  typesArr.forEach(type => {
-    const funcName = Object.keys(type)[0];
-    Genpassword += randomFunc[funcName]();
-  });
-console.log(Genpassword);
-  const password = (Genpassword.slice(0, length));
-  return password;
-}
-
-
-
+// generator functions
 function getRandomcapital() {
-  const capital = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
-  return capitalEl[Math.floor(Math.random() * capital.lengthEl)];
-}
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+ }
 
 function getRandomlower() {
-  const lower = "abcdefghijklmnopqrstuvwxyz".split('');
-  return lower[Math.floor(Math.random() * lower.lengthEl)];
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
 
-function getRandomNumber() {
-  const numbers = "0123456789".split('');
-  return +numbers[Math.floor(Math.random() * numbers.lengthEl)];
+function getRandomnumber() {
+  return +String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 }
 
-function getRandomspecial() {
-  const special = "!@#$%^&*()+-[]<>".split('');
-  return specialEl[Math.floor(Math.random() * special.lengthEl)]
+function getRandomspecials() {
+  const specials = "!@#$%^&*()+-[]<>";
+  return specials[Math.floor(Math.random() * specials.length)];
 }
 
-
-
-
-// if generate password is clicked 
-// then generate password
-
-// generate password is Random
-// choose capital-letters
-// choose lowcase-letters
-// choose numbers
-// choose special characters
-// choose the number of characters in password
-//     var password_length = number;
-//     charArray []
-
-// how to randomize the character locations
 
