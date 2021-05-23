@@ -15,3 +15,9 @@ Thomas Kang Password Generator
 -  updated global variables
 -  added length variable
 -  types array for capital, lower, numbers, special
+
+5/22/2021
+-  added password generation event
+-  added generate password function
+-  added loop
+-  added max/min to length in HTML

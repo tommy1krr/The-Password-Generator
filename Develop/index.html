@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Password Generator</title>
     <link rel="stylesheet" href="style.css" />
+    <title>Password Generator</title>
   </head>
   <body>
     <div class="wrapper">
@@ -24,12 +24,12 @@
             aria-label="Generated Password"
           ></textarea>
           <h3>Choose what characters to include in your password.</h3>
-          <input type = "checkbox" id = "capital" />Capital Letters<br>
-          <input type = "checkbox" id = "lower" />Lower Case Letters<br>
-          <input type = "checkbox" id = "numbers" />Numbers<br>
-          <input type = "checkbox" id = "special" />Special Characters<br><br>
+          <input type = "checkbox" id = "capital" checked />Capital Letters<br>
+          <input type = "checkbox" id = "lower" checked />Lower Case Letters<br>
+          <input type = "checkbox" id = "numbers" checked />Numbers<br>
+          <input type = "checkbox" id = "special" checked />Special Characters<br><br>
           <h3>Enter the length of your password 8 to 128.</h3>
-          <input type = "number" id = "length"/>
+          <input type = "number" id = "length" min = "8" max = "128" />
 
         </div>
         <div class="card-footer">
